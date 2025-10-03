@@ -1,0 +1,31 @@
+.brands {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: #000; /* Черный фон только для контентной области */
+  border-radius: 0 0 12px 12px; /* Закругленные углы снизу */
+}
+
+.brands-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* Остальные стили остаются такими же */
+.brand-item {
+  padding: 10px 20px;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.brand-logo {
+  max-width: 120px;
+  height: auto;
+}
+

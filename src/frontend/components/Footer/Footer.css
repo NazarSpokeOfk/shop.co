@@ -1,0 +1,92 @@
+.footer {
+  background: #f0f0f0;
+  padding: 60px 40px 30px;
+}
+
+.footer-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  margin-bottom: 50px;
+}
+
+.brand-section .logo {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.brand-description {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  max-width: 300px;
+}
+
+.social-dots {
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  font-size: 20px;
+  color: #ccc;
+}
+
+.dot.active {
+  color: #000;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.link-column h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.link-column a {
+  display: block;
+  color: #666;
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: color 0.3s ease;
+}
+
+.link-column a:hover {
+  color: #000;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 30px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copyright {
+  color: #666;
+  font-size: 14px;
+}
+
+.payment-methods {
+  display: flex;
+  gap: 20px;
+}
+
+.payment-methods span {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+}
