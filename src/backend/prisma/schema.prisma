@@ -15,36 +15,87 @@ datasource db {
 }
 
 model Users {
-  user_id Int @id @default(autoincrement())
-  email String unique
-  name string
-  password string
+  user_id   Int            @id @default(autoincrement())
+  email     String         @unique
+  name      String
+  password  String
+
+  cart      Cart[]
+  reviews   Goods_reviews[]
+  website_review Website_reviews?
 }
 
-model Cart {
-  user_id User? @relation(fields: [user_id] references : [user_id])
-  good_id Goods? @relation(fields : [good_id] references : [good_id])
-  position_id Int @id @default(autoincrement())
+model Website_reviews {
+  review_id Int @id @default(autoincrement())
+  user_id Int @unique
+  rating Int
+  review String
+  reviewer_name String
+  created_at DateTime        @default(now())
+
+  user Users? @relation(fields: [user_id], references: [user_id])
 }
 
 model Goods {
-  good_id Int @id @default(autoincrement())
-  category String
-  price Int
-  dress_style String
-  color String
-  size String
-  sex String
-  brand String
+  good_id      Int             @id @default(autoincrement())
+  good_name    String          @unique
+  price        Int
+  dress_style  String
+  color        String
+  size         String
+  sex          String
+  brand        String
+  arrival_time DateTime        @default(now())
+
+  cart         Cart[]
+  description  Description?
+  details      Details?
+  photos       Photos[]
+  reviews      Goods_reviews[]
 }
 
-model Jeans {
-  good_id       Int     @id @default(autoincrement()) // если это PK
-  Goods         Goods?  @relation(fields: [good_id], references: [good_id])
-  category      String
-  good_name     String
-  good_desc     String
-  good_details  String
-  purchase_rating Float
-  arrival_time  DateTime
+model Cart {
+  position_id Int    @id @default(autoincrement())
+  user_id     Int
+  good_id     Int
+
+  user Users? @relation(fields: [user_id], references: [user_id])
+  good Goods? @relation(fields: [good_id], references: [good_id])
+}
+
+model Description {
+  good_id   Int    @id
+  good_desc String
+
+  good Goods @relation(fields: [good_id], references: [good_id])
+}
+
+model Details {
+  good_id   Int    @id
+  materials String
+  seasons   String
+
+  good Goods @relation(fields: [good_id], references: [good_id])
+}
+
+model Photos {
+  photo_id Int    @id @default(autoincrement())
+  good_id  Int
+  photo    Bytes
+
+  good Goods @relation(fields: [good_id], references: [good_id])
+}
+
+model Goods_reviews {
+  review_id     Int      @id @default(autoincrement())
+  good_id       Int
+  user_id       Int
+  rating        Float
+  review        String
+  posted_at     DateTime @default(now())
+
+  good  Goods @relation(fields: [good_id], references: [good_id])
+  user  Users? @relation(fields: [user_id], references: [user_id])
+
+  @@unique([good_id, user_id])
 }
