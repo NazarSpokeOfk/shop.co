@@ -11,23 +11,25 @@ export class UsersController {
 
   @Post('register')
   async register(@Body() register: Register) {
-    const {email,password,name} = register;
+    const { email, password, name } = register;
     try {
-        const user = await this.UsersService.register({email,password,name});
-        return sendResponseUtility(user,null)
+      const user = await this.UsersService.register({ email, password, name });
+      const response = {email: user.email, name: user.name};
+      return sendResponseUtility(response, null);
     } catch (error) {
-        return sendResponseUtility(null,error)
+      return sendResponseUtility(null, error);
     }
   }
 
   @Post('login')
-  async login(@Body() login : Login) {
-    const {email,password} = login
+  async login(@Body() login: Login) {
+    const { email, password } = login;
     try {
-        const user = await this.UsersService.login({email,password})
-        return sendResponseUtility(user,null);
+      const user = await this.UsersService.login({ email, password });
+      const response = {email : user.email, name : user.name}
+      return sendResponseUtility(user, null);
     } catch (error) {
-        return sendResponseUtility(null,error)
+      return sendResponseUtility(null, error);
     }
   }
 }
