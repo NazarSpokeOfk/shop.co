@@ -1,6 +1,6 @@
 .footer {
   background: #f0f0f0;
-  padding: 60px 40px 30px;
+  padding: 60px 0 30px;
 }
 
 .footer-top {
@@ -10,6 +10,7 @@
   grid-template-columns: 1fr 2fr;
   gap: 80px;
   margin-bottom: 50px;
+  padding: 0 20px;
 }
 
 .brand-section .logo {
@@ -24,20 +25,6 @@
   line-height: 1.6;
   margin-bottom: 30px;
   max-width: 300px;
-}
-
-.social-dots {
-  display: flex;
-  gap: 10px;
-}
-
-.dot {
-  font-size: 20px;
-  color: #ccc;
-}
-
-.dot.active {
-  color: #000;
 }
 
 .footer-links {
@@ -68,7 +55,7 @@
 .footer-bottom {
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 30px;
+  padding: 30px 20px 0;
   border-top: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
@@ -89,4 +76,22 @@
   color: #666;
   font-size: 14px;
   font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .footer-links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
 }

@@ -1,0 +1,200 @@
+.filters {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.filters-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #000;
+}
+
+.filter-group {
+  margin-bottom: 30px;
+}
+
+.filter-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #000;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.filter-option:hover {
+  color: #000;
+}
+
+.filter-option input {
+  display: none;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #e5e5e5;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.filter-option input:checked + .checkmark {
+  background: #000;
+  border-color: #000;
+}
+
+.filter-option input:checked + .checkmark::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.size-filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.size-option-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  transition: color 0.3s ease;
+  padding: 5px;
+}
+
+.size-option-filter:hover {
+  color: #000;
+}
+
+.size-option-filter input {
+  display: none;
+}
+
+.size-checkmark {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e5e5e5;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.size-option-filter input:checked + .size-checkmark {
+  background: #000;
+  border-color: #000;
+}
+
+.size-option-filter input:checked + .size-checkmark::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.price-range {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.price-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.price-slider {
+  width: 100%;
+  height: 4px;
+  background: #e5e5e5;
+  border-radius: 2px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.price-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.price-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #000;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.color-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.color-filter {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #e5e5e5;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.color-filter:hover {
+  border-color: #000;
+}
+
+.color-filter.black { background: #000; }
+.color-filter.white { background: #fff; }
+.color-filter.red { background: #ff4444; }
+.color-filter.blue { background: #4444ff; }
+.color-filter.green { background: #44ff44; }
+.color-filter.yellow { background: #ffff44; }
+
+@media (max-width: 768px) {
+  .filters {
+    padding: 20px;
+  }
+  
+  .size-filters {
+    grid-template-columns: 1fr;
+  }
+}

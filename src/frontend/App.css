@@ -18,3 +18,47 @@ body {
   background: #fff;
 }
 
+.catalog-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.filters-sidebar {
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+.products-main {
+  flex: 1;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+@media (max-width: 768px) {
+  .catalog-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .filters-sidebar {
+    position: static;
+  }
+
+  .cart-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
