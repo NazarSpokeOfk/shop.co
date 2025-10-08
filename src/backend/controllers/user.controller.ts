@@ -14,7 +14,11 @@ export class UsersController {
     const { email, password, name } = register;
     try {
       const user = await this.UsersService.register({ email, password, name });
-      const response = {email: user.email, name: user.name};
+      const response = {
+        email: user.email,
+        name: user.name,
+        user_id: user.user_id,
+      };
       return sendResponseUtility(response, null);
     } catch (error) {
       return sendResponseUtility(null, error);
@@ -26,8 +30,12 @@ export class UsersController {
     const { email, password } = login;
     try {
       const user = await this.UsersService.login({ email, password });
-      const response = {email : user.email, name : user.name}
-      return sendResponseUtility(user, null);
+      const response = {
+        email: user.email,
+        name: user.name,
+        user_id: user.user_id,
+      };
+      return sendResponseUtility(response, null);
     } catch (error) {
       return sendResponseUtility(null, error);
     }

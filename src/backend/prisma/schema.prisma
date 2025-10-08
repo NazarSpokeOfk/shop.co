@@ -55,10 +55,11 @@ model Goods {
 }
 
 model Cart {
-  position_id Int    @id @default(autoincrement())
-  user_id     Int
-  good_id     Int
-
+  position_id  Int    @id @default(autoincrement())
+  user_id      Int
+  good_id      Int
+  quantity     Int    @default(1)
+  total_price  Int    @default(0)     
   user Users? @relation(fields: [user_id], references: [user_id])
   good Goods? @relation(fields: [good_id], references: [good_id])
 }
