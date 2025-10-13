@@ -46,6 +46,7 @@ model Goods {
   sex          String
   brand        String
   arrival_time DateTime        @default(now())
+  category     String
 
   cart         Cart[]
   description  Description?
