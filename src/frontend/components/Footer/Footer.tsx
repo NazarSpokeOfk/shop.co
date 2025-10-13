@@ -11,12 +11,6 @@ const Footer = () => {
             We have clothes that suits your style and which you're proud to wear. 
             From women to men.
           </p>
-          <div className="social-dots">
-            <span className="dot active">●</span>
-            <span className="dot">○</span>
-            <span className="dot">○</span>
-            <span className="dot">○</span>
-          </div>
         </div>
 
         <div className="footer-links">
@@ -56,13 +50,10 @@ const Footer = () => {
 
       <div className="footer-bottom">
         <div className="footer-copyright">
-          Shop.co © 2000-2024, All Rights Reserved
+          Shop.co © 2000-2023, All Rights Reserved
         </div>
         <div className="payment-methods">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
+          <span>VISA</span>
         </div>
       </div>
     </footer>
