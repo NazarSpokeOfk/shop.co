@@ -83,7 +83,7 @@ model Details {
 model Photos {
   photo_id Int    @id @default(autoincrement())
   good_id  Int
-  photo    Bytes
+  photo    String
 
   good Goods @relation(fields: [good_id], references: [good_id])
 }

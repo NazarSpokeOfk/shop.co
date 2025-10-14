@@ -20,7 +20,7 @@ export class UsersService {
             })
         } catch (error) {
             console.log(error)
-            throw new Error("Error in register : " , error)
+            throw new Error("Error in register : " + error)
         }
     }
 
@@ -39,7 +39,7 @@ export class UsersService {
 
             return user;
         } catch (error) {
-            throw new Error("Error in Login : " , error)
+            throw new Error("Error in Login : " + error)
         }
     }
 }

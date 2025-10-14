@@ -24,7 +24,7 @@ export class CartController {
 
       sendResponseUtility(addingGoodToCart, null);
     } catch (error) {
-      sendResponseUtility(null, error);
+      sendResponseUtility(null+ error);
     }
   }
 
@@ -34,7 +34,7 @@ export class CartController {
       const gettingGoodsFromCart = await this.CartService.getGoodsFromCart(id);
       sendResponseUtility(gettingGoodsFromCart, null);
     } catch (error) {
-      sendResponseUtility(null, error);
+      sendResponseUtility(null+ error);
     }
   }
 
@@ -50,7 +50,7 @@ export class CartController {
 
       sendResponseUtility(deletingGoodFromCart,null)
     } catch (error) {
-      sendResponseUtility(null, error);
+      sendResponseUtility(null+ error);
     }
   }
 }

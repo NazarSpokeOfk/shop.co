@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { FilterByParameters } from 'DTO/good.filterByParameters.dto';
+import { GetPhotos } from 'DTO/good.getPhotos.dto';
 import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class GoodsService {
   async selectByName(goodName: string) {
     const good_name = goodName.trim();
     try {
-       const good = await this.prisma.goods.findFirst({
+      const good = await this.prisma.goods.findMany({
         where: {
           good_name: {
             contains: good_name,
@@ -17,9 +18,9 @@ export class GoodsService {
           },
         },
       });
-      return good
+      return good;
     } catch (error) {
-      throw new Error('There was an error in selectByName : ', error);
+      throw new Error('There was an error in selectByName : ' + error);
     }
   }
 
@@ -30,7 +31,7 @@ export class GoodsService {
     color,
     size,
     dressStyle,
-    sex
+    sex,
   }: FilterByParameters) {
     try {
       let filters: any = {};
@@ -39,8 +40,8 @@ export class GoodsService {
         filters.category = category;
       }
 
-      if(sex) {
-        filters.sex = sex
+      if (sex) {
+        filters.sex = sex;
       }
 
       if (color) {
@@ -61,14 +62,86 @@ export class GoodsService {
         if (endPrice) filters.price.lte = endPrice;
       }
 
-      const goods = await this.prisma.goods.findMany({
+      const request = await this.prisma.goods.findMany({
         where: filters,
+        select: {
+          good_name: true,
+          price: true,
+          good_id: true,
+        },
       });
 
+      const promises = request.map(async (good) => {
+        const photo = await this.getPhotos({
+          type: "findFirst",
+          good_id: good.good_id,
+        });
+        const rating = await this.calculateRating(good.good_id);
+
+        return {
+          photo,
+          rating,
+          goodName: good.good_name,
+          goodId: good.good_id,
+          price: good.price,
+        };
+      });
+
+      const goods = await Promise.all(promises);
+
       return goods;
-      // нужно еще рейтинг продукта добавить
     } catch (error) {
-      throw new Error('There was an error in filterByParameters : ', error);
+      throw new Error('There was an error in filterByParameters : ' + error);
+    }
+  }
+
+  async calculateRating(good_id: number) {
+    try {
+      const goodRating = await this.prisma.goods_reviews.findMany({
+        where: {
+          good_id,
+        },
+        select: {
+          rating: true,
+        },
+      });
+
+      if (goodRating.length === 0) {
+        return 0;
+      }
+
+      let finalRating = 0;
+      let reviewsCount = 0;
+
+      goodRating.forEach((rating) => {
+        finalRating += rating.rating;
+        reviewsCount++;
+      });
+
+      return finalRating / reviewsCount;
+    } catch (error) {
+      throw new Error('There was an error in calculateRating : ' + error);
+    }
+  }
+
+  async getPhotos({ type, good_id }: GetPhotos) {
+    try {
+      const request = await this.prisma.photos[type]({
+        where: {
+          good_id,
+        },
+        select : {
+          photo : true
+        }
+      });
+        
+      if(request === null) return "There is no photos."
+
+      if("photo" in request) return request.photo;
+
+      return request
+    } catch (error) {
+      throw new Error('There was an error in getPhotos : ' + error);
     }
   }
 }

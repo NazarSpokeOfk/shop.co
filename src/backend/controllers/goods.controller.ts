@@ -15,7 +15,7 @@ export class GoodsController {
       const good = await this.GoodsService.selectByName(good_name);
       return sendResponseUtility(good, null);
     } catch (error) {
-      sendResponseUtility(null, error);
+      sendResponseUtility(null+ error);
     }
   }
 
@@ -36,7 +36,7 @@ export class GoodsController {
 
       return sendResponseUtility(goods, null);
     } catch (error) {
-      sendResponseUtility(null, error);
+      sendResponseUtility(null+ error);
     }
   }
 }

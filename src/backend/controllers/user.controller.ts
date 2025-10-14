@@ -21,7 +21,7 @@ export class UsersController {
       };
       return sendResponseUtility(response, null);
     } catch (error) {
-      return sendResponseUtility(null, error);
+      return sendResponseUtility(null+ error);
     }
   }
 
@@ -37,7 +37,7 @@ export class UsersController {
       };
       return sendResponseUtility(response, null);
     } catch (error) {
-      return sendResponseUtility(null, error);
+      return sendResponseUtility(null+ error);
     }
   }
 }
